@@ -1,9 +1,9 @@
 {
-  "name": "hubob",
+  "name": "bob",
   "version": "0.0.0",
   "private": true,
   "author": "Gordon Whamond <gordon.whamond@sky.uk>",
-  "description": "Hubot instance called 'bob' with a slack adapter",
+  "description": "Hubot instance with a Slack adapter",
   "dependencies": {
     "hubot": "^2.17.0",
     "hubot-diagnostics": "0.0.1",
