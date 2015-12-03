@@ -7,20 +7,15 @@ deployingMessages = [
   "It's important to me that you're happy"
 ]
 
-
-
 {SlackRawListener} = require 'hubot-slack'
 
 callbackTest = (res) ->
   res.send "YO"
 
-
 module.exports = (robot) ->
 
-  robot.listeners.push new SlackRawListener(robot, /.*/, callbackTest)
+  robot.listeners.push new SlackRawListener(robot, //, callbackTest)
 
-  robot.hear //, (msg) ->
-    msg.send "TT #{msg.message.text} TT"
 
   robot.hear /.*Success:.+#(.+); .+ in (.+) \((.+)\).*/i, (res) ->
     buildNumber = res.match[1]
