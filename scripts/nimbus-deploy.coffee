@@ -17,40 +17,6 @@ callbackTest = (res) ->
     branch = res.match[3]
 
     unless branch is "master"
-      res.send "Ignoring build #{buildNumber} of #{project} since it isn't on the master."
-      res.send "There is immense joy in just watching"
-    else
-      buildURL = circleAPI + "/#{project}/#{buildNumber}"
-      res.send "Deploying #{project} build #{buildNumber} to Staging"
-      res.send res.random deployingMessages
-
-      data = JSON.stringify({
-        "payload": {
-          "build_url" : buildURL
-        }
-      })
-
-      robot.http("http://skymobile-deployer.stage-cf.sky.com/hooks/circle")
-        .header('Content-Type', 'application/json')
-        .post(data) (err, resp, body) ->
-          if resp.statusCode isnt 200
-            res.send "Deployment failed"
-            return
-          res.send "Deployment complete"
-
-
-
-module.exports = (robot) ->
-
-  robot.listeners.push new SlackBotListener(robot, buildRegex, callbackTest)
-
-
-  robot.hear /.*Success:.+#(.+); .+ in (.+) \((.+)\).*/i, (res) ->
-    buildNumber = res.match[1]
-    project = res.match[2]
-    branch = res.match[3]
-
-    unless branch is "master"
       res.send "Ignoring build #{buildNumber} of #{project} since branch #{branch} is not master."
       res.send "There is immense joy in just watching"
     else
@@ -71,3 +37,8 @@ module.exports = (robot) ->
             res.send "Deployment failed"
             return
           res.send "Deployment complete"
+
+module.exports = (robot) ->
+
+  robot.listeners.push new SlackBotListener(robot, buildRegex, callbackTest)
+
