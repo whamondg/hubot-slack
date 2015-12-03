@@ -7,14 +7,16 @@ deployingMessages = [
   "It's important to me that you're happy"
 ]
 
-{SlackRawListener} = require 'hubot-slack'
+{SlackBotListener} = require 'hubot-slack'
 
 callbackTest = (res) ->
   res.send "YO"
 
 module.exports = (robot) ->
 
-  robot.listeners.push new SlackRawListener(robot, //, callbackTest)
+  robot.listeners.push new SlackBotListener(robot, //, callbackTest)
+
+
 
 
   robot.hear /.*Success:.+#(.+); .+ in (.+) \((.+)\).*/i, (res) ->
