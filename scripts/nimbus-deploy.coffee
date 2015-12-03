@@ -51,7 +51,7 @@ module.exports = (robot) ->
     branch = res.match[3]
 
     unless branch is "master"
-      res.send "Ignoring build #{buildNumber} of #{project} since it isn't on the master."
+      res.send "Ignoring build #{buildNumber} of #{project} since #{branch} is not master."
       res.send "There is immense joy in just watching"
     else
       buildURL = circleAPI + "/#{project}/#{buildNumber}"
