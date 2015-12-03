@@ -12,6 +12,8 @@ deployingMessages = [
 buildRegex = /.*Success:.+#(.+); .+ in (.+) \((.+)\).*/i
 
 callbackTest = (res) ->
+    res.send res.message.message.text
+
     buildNumber = res.match[1].replace(/.*\//, '')
     project = res.match[2].replace(/.*\//, '')
     branch = res.match[3].replace(/.*\//, '')
