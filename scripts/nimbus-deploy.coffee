@@ -17,6 +17,11 @@ callbackTest = (res) ->
     branch = res.match[3]
 
     unless branch is "master"
+      res.send "Build   #{buildNumber} "
+      res.send "Project #{project} "
+      res.send "Branch  #{branch} "
+
+
       res.send "Ignoring build #{buildNumber} of #{project} since branch #{branch} is not master."
       res.send "There is immense joy in just watching"
     else
