@@ -9,7 +9,7 @@ deployingMessages = [
 
 {SlackBotListener} = require 'hubot-slack'
 
-buildRegex = /.+#(.+); .+ in (.+) \((.+?)\).+/i
+buildRegex = /.*Success:.+#(.+); .+ in (.+) \((.+)\).*/i
 
 callbackTest = (res) ->
     buildNumber = res.match[1]
