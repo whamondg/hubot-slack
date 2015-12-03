@@ -1,7 +1,7 @@
 # Description:
 #
 
-circleAPI = "https://circleci.com/api/v1/project"
+circleAPI = "https://circleci.com/api/v1/project/sky-uk/"
 deployingMessages = [
   "Be brave. Just let this happen.",
   "It's important to me that you're happy"
@@ -12,9 +12,9 @@ deployingMessages = [
 buildRegex = /.*Success:.+#(.+); .+ in (.+) \((.+)\).*/i
 
 callbackTest = (res) ->
-    buildNumber = res.match[1]
-    project = res.match[2]
-    branch = res.match[3]
+    buildNumber = res.match[1].replace(/.*\//, '')
+    project = res.match[2].replace(/.*\//, '')
+    branch = res.match[3].replace(/.*\//, '')
 
     unless branch is "master"
       res.send "Build   #{buildNumber} "
