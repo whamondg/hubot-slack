@@ -1,12 +1,24 @@
 # Description:
 #
+
 circleAPI = "https://circleci.com/api/v1/project"
 deployingMessages = [
   "Be brave. Just let this happen.",
   "It's important to me that you're happy"
 ]
 
+
+
+{SlackRawListener} = require 'hubot-slack'
+
+callbackTest = (res) ->
+  res.send "YO"
+
+
 module.exports = (robot) ->
+
+  robot.listeners.push new SlackRawListener(robot, /.*/, callbackTest)
+
   robot.hear //, (msg) ->
     msg.send "TT #{msg.message.text} TT"
 
