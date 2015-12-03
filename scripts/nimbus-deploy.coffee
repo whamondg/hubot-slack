@@ -7,9 +7,8 @@ deployingMessages = [
 ]
 
 module.exports = (robot) ->
-   robot.listen(
-     (message) ->
-   )
+  robot.hear //, (msg) ->
+    msg.send "TT #{msg.message.text} TT"
 
   robot.hear /.*Success:.+#(.+); .+ in (.+) \((.+)\).*/i, (res) ->
     buildNumber = res.match[1]
