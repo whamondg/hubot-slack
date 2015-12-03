@@ -9,12 +9,14 @@ deployingMessages = [
 
 {SlackBotListener} = require 'hubot-slack'
 
+buildRegex = /.*Success:.+#(.+); .+ in (.+) \((.+)\).*/i
+
 callbackTest = (res) ->
   res.send "YO"
 
 module.exports = (robot) ->
 
-  robot.listeners.push new SlackBotListener(robot, //, callbackTest)
+  robot.listeners.push new SlackBotListener(robot, buildRegex, callbackTest)
 
 
 
